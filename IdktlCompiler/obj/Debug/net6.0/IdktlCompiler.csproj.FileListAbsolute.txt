@@ -1,0 +1,15 @@
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\bin\Debug\net6.0\IdktlCompiler.exe
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\bin\Debug\net6.0\IdktlCompiler.deps.json
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\bin\Debug\net6.0\IdktlCompiler.runtimeconfig.json
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\bin\Debug\net6.0\IdktlCompiler.dll
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\bin\Debug\net6.0\IdktlCompiler.pdb
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\obj\Debug\net6.0\IdktlCompiler.csproj.AssemblyReference.cache
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\obj\Debug\net6.0\IdktlCompiler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\obj\Debug\net6.0\IdktlCompiler.AssemblyInfoInputs.cache
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\obj\Debug\net6.0\IdktlCompiler.AssemblyInfo.cs
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\obj\Debug\net6.0\IdktlCompiler.csproj.CoreCompileInputs.cache
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\obj\Debug\net6.0\IdktlCompiler.dll
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\obj\Debug\net6.0\refint\IdktlCompiler.dll
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\obj\Debug\net6.0\IdktlCompiler.pdb
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\obj\Debug\net6.0\IdktlCompiler.genruntimeconfig.cache
+C:\Users\Nickolas\source\repos\IdktlCompiler\IdktlCompiler\obj\Debug\net6.0\ref\IdktlCompiler.dll
