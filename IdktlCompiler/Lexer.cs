@@ -38,6 +38,21 @@ namespace IdktlCompiler
             };
         }
 
+        public IEnumerable<TokenTuple> GetTokenIterator()
+        {
+            while (true)
+            {
+                TokenTuple token = GetNextToken();
+
+                if (!token.Success || token.Token == "")
+                {
+                    yield break;
+                }
+                
+                yield return token;
+            }
+        }
+
         private TokenType? GetTokenTypeFromInitialChar(char c)
         {
             return c switch
