@@ -10,8 +10,14 @@ namespace IdktlCompiler
     {
         NAME,
         NUMBER,
-        SEPARATOR,
-        STRING_INDICATOR,
+        COMMA,
+        SEMICOLON,
+        COLON,
+        OPEN_PARENTHESIS,
+        CLOSE_PARENTHESIS,
+        OPEN_BRACKET,
+        CLOSE_BRACKET,
+        STRING,
         ASSIGNMENT,
         MATH_OPERATOR,
     }

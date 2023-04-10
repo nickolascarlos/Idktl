@@ -32,6 +32,7 @@ namespace IdktlCompiler
             {
                 TokenType.NUMBER => Reducer(ReadNumber, TokenType.NUMBER),
                 TokenType.NAME => Reducer(ReadName, TokenType.NAME),
+                TokenType.STRING => Reducer(ReadString, TokenType.STRING),
                 TokenType x => Reducer(ReadSingleCharToken, x),
                 _ => new TokenTuple(false, null, null)
             };
@@ -43,10 +44,16 @@ namespace IdktlCompiler
             {
                 var x when IsALetter(x) => TokenType.NAME,
                 var x when IsANumber(x) => TokenType.NUMBER,
-                var x when IsASeparator(x) => TokenType.SEPARATOR,
                 var x when IsAMathOperator(x) => TokenType.MATH_OPERATOR,
-                var x when x == '"' => TokenType.STRING_INDICATOR,
-                var x when x == '=' => TokenType.ASSIGNMENT,
+                '"' => TokenType.STRING,
+                ',' => TokenType.COMMA,
+                ';' => TokenType.SEMICOLON,
+                ':' => TokenType.COLON,
+                '(' => TokenType.OPEN_PARENTHESIS,
+                ')' => TokenType.CLOSE_PARENTHESIS,
+                '{' => TokenType.OPEN_BRACKET,
+                '}' => TokenType.CLOSE_BRACKET,
+                '=' => TokenType.ASSIGNMENT,
                 _ => null
             };
         }
@@ -86,6 +93,23 @@ namespace IdktlCompiler
                 true,
                 token + currentChar
             );
+        }
+
+        private TokenReducerResponse ReadString(String token, Char currentChar)
+        {
+            if (!token.Equals("") && currentChar == '"')
+            {
+                _cursorPosition++; // Consumes " char
+                return new TokenReducerResponse(false, false, token + '"');
+            }
+
+            if (currentChar == '\\')
+            {
+                _cursorPosition++;
+                return new TokenReducerResponse(false, true,  token + _text[_cursorPosition]);
+            }
+
+            return new TokenReducerResponse(false, true, token + currentChar);
         }
 
         private TokenReducerResponse ReadSingleCharToken(String token, Char currentChar)
