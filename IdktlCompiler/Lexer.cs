@@ -37,26 +37,6 @@ namespace IdktlCompiler
             };
         }
 
-        private static bool IsANumber(char c)
-        {
-            return CharNumberList.Contains(c);
-        }
-
-        private static bool IsALetter(char c)
-        {
-            return CharLetterList.Contains(c);
-        }
-    
-        private static bool IsASeparator(char c)
-        {
-            return CharSeparatorList.Contains(c);
-        }
-
-        private static bool IsAMathOperator(char c)
-        {
-            return CharMathOperatorList.Contains(c);
-        }
-
         private TokenType? GetTokenTypeFromInitialChar(char c)
         {
             return c switch
@@ -84,53 +64,45 @@ namespace IdktlCompiler
             return null;
         }
 
-        private TokenReducerResponse ReadNumber(String token, Char currentChar, Char? nextChar, TokenType tokenType)
+        private TokenReducerResponse ReadNumber(String token, Char currentChar)
         {
             if (!IsANumber(currentChar))
             {
                 return new TokenReducerResponse(true, false, token);
             }
 
-            Boolean continueReading = !(nextChar != null && (nextChar == ' ' || IsASeparator((char)nextChar) || IsAMathOperator((char)nextChar)));
-
-            return new TokenReducerResponse(
-                false,
-                continueReading,
-                token + currentChar
-            );
+            return new TokenReducerResponse(false, true, token + currentChar);
         }
 
-        private TokenReducerResponse ReadName(String token, Char currentChar, Char? nextChar, TokenType tokenType)
+        private TokenReducerResponse ReadName(String token, Char currentChar)
         {
             if (!IsALetter(currentChar))
             {
                 return new TokenReducerResponse(true, false, token);
             }
-
-            // TODO: Improve this expression
-            Boolean continueReading = !(nextChar != null && (nextChar == ' ' || IsASeparator((char)nextChar) || IsAMathOperator((char)nextChar)));
             
             return new TokenReducerResponse(
                 false,
-                continueReading,
+                true,
                 token + currentChar
             );
         }
 
-        private TokenReducerResponse ReadSingleCharToken(String token, Char currentChar, Char? nextChar, TokenType tokenType)
+        private TokenReducerResponse ReadSingleCharToken(String token, Char currentChar)
         {
+            _cursorPosition++;
             return new TokenReducerResponse(false, false, token + currentChar);
         }
-        private TokenTuple Reducer(Func<String, Char, Char?, TokenType, TokenReducerResponse> function, TokenType tokenType)
+        
+        private TokenTuple Reducer(Func<String, Char, TokenReducerResponse> function, TokenType tokenType)
         {
             var token = String.Empty;
 
             for (; _cursorPosition < _text.Length; _cursorPosition++)
             {
                 char currentChar = _text[_cursorPosition];
-                char? nextChar = _cursorPosition < _text.Length - 1 ? _text[_cursorPosition + 1] : null;
 
-                TokenReducerResponse response = function(token, currentChar, nextChar, tokenType);
+                TokenReducerResponse response = function(token, currentChar);
                 
                 if (!response.Error)
                 {
@@ -143,12 +115,31 @@ namespace IdktlCompiler
 
                 if (!response.Continue)
                 {
-                    _cursorPosition++;
                     break;
                 }
             }
 
             return new TokenTuple(true, token, tokenType);
+        }
+
+        private static bool IsANumber(char c)
+        {
+            return CharNumberList.Contains(c);
+        }
+
+        private static bool IsALetter(char c)
+        {
+            return CharLetterList.Contains(c);
+        }
+
+        private static bool IsASeparator(char c)
+        {
+            return CharSeparatorList.Contains(c);
+        }
+
+        private static bool IsAMathOperator(char c)
+        {
+            return CharMathOperatorList.Contains(c);
         }
     }
 }
