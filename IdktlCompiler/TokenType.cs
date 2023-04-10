@@ -8,7 +8,9 @@ namespace IdktlCompiler
 {
     public enum TokenType
     {
-        NAME,
+        _ALPHANUMERIC,
+        KEYWORD,
+        IDENTIFIER,
         NUMBER,
         COMMA,
         SEMICOLON,
